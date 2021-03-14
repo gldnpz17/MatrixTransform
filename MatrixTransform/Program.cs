@@ -12,10 +12,10 @@ namespace MatrixTransform
             try
             {
                 // Write identity and instructions
-                Console.WriteLine("Tugas Program Transformasi Matrix 2D");
+                Console.WriteLine("Tugas Program Transformasi Matrix 2D - Teknik Visualisasi Grafis");
                 Console.WriteLine("Nama : Firdaus Bisma Suryakusuma");
                 Console.WriteLine("NIM  : 19/444051/TK/49247");
-                Console.WriteLine("1. Mohon pastikan terdapat file bernama \'input.png\' di dalam direktori yang sama dengan program. File output akan bernama \'output.png\'.");
+                Console.WriteLine("1. Mohon pastikan terdapat file bernama \'input.png\' di dalam direktori yang sama dengan program. File output akan bernama \'output.png\'. Gambar input dapat digambar dengan paint atau sejenisnya.");
                 Console.WriteLine("2. Program hanya akan membaca pixel dengan warna hitam sehingga mohon pastikan R=0, G=0, dan B=0.");
                 Console.WriteLine("3. Di dalam \'output.png\', hasil transformasi berwarna merah dan ditindih di atas gambar aslinya.");
                 Console.WriteLine();
@@ -45,24 +45,27 @@ namespace MatrixTransform
                             {
                                 matrix = new double[3, 3]
                                 {
-                                { 1, 0, Convert.ToDouble(distance) },
-                                { 0, 1, 0},
-                                { 0, 0, 1}
+                                    { 1, 0, Convert.ToDouble(distance) },
+                                    { 0, 1, 0},
+                                    { 0, 0, 1}
                                 };
                             }
                             else if (translationDirection == "y")
                             {
-                                matrix = new double[3, 3] {
-                                { 1, 0, 0 },
-                                { 0, 1, Convert.ToDouble(distance)},
-                                { 0, 0, 1}
-                            };
+                                matrix = new double[3, 3] 
+                                {
+                                    { 1, 0, 0 },
+                                    { 0, 1, Convert.ToDouble(distance)},
+                                    { 0, 0, 1}
+                                };
                             }
                             else
                             {
                                 Console.WriteLine("Invalid direction.");
+                                Console.WriteLine();
                                 continue;
                             }
+                            Console.WriteLine();
                             break;
 
                         case "2":
@@ -71,10 +74,11 @@ namespace MatrixTransform
                             double DegreesToRadians(double degrees) => degrees * (Math.PI / 180);
                             matrix = new double[3, 3]
                             {
-                            { Math.Cos(DegreesToRadians(angle)), -1.0d * Math.Sin(DegreesToRadians(angle)), 0 },
-                            { Math.Sin(DegreesToRadians(angle)), Math.Cos(DegreesToRadians(angle)), 0 },
-                            { 0, 0, 1 }
+                                { Math.Cos(DegreesToRadians(angle)), -1.0d * Math.Sin(DegreesToRadians(angle)), 0 },
+                                { Math.Sin(DegreesToRadians(angle)), Math.Cos(DegreesToRadians(angle)), 0 },
+                                { 0, 0, 1 }
                             };
+                            Console.WriteLine();
                             break;
 
                         case "3":
@@ -82,10 +86,11 @@ namespace MatrixTransform
                             var scalingFactor = Convert.ToDouble(Console.ReadLine());
                             matrix = new double[3, 3]
                             {
-                            { scalingFactor, 0, 0 },
-                            { 0, scalingFactor, 0 },
-                            { 0, 0, 1 }
+                                { scalingFactor, 0, 0 },
+                                { 0, scalingFactor, 0 },
+                                { 0, 0, 1 }
                             };
+                            Console.WriteLine();
                             break;
 
                         case "4":
@@ -97,25 +102,27 @@ namespace MatrixTransform
                             {
                                 matrix = new double[3, 3]
                                 {
-                                { 1, shearingFactor, 0 },
-                                { 0, 1, 0 },
-                                { 0, 0, 1 }
+                                    { 1, shearingFactor, 0 },
+                                    { 0, 1, 0 },
+                                    { 0, 0, 1 }
                                 };
                             }
                             else if (shearingDirection == "y")
                             {
                                 matrix = new double[3, 3]
                                 {
-                                { 1, 0, 0 },
-                                { shearingFactor, 1, 0 },
-                                { 0, 0, 1 }
+                                    { 1, 0, 0 },
+                                    { shearingFactor, 1, 0 },
+                                    { 0, 0, 1 }
                                 };
                             }
                             else
                             {
                                 Console.WriteLine("Invalid direction");
+                                Console.WriteLine();
                                 continue;
                             }
+                            Console.WriteLine();
                             break;
 
                         case "5":
@@ -128,6 +135,7 @@ namespace MatrixTransform
                                     matrix[row, col] = Convert.ToDouble(rowElements[col]);
                                 }
                             }
+                            Console.WriteLine();
                             break;
 
                         default:
@@ -138,13 +146,15 @@ namespace MatrixTransform
                     transformationMatrices.Add(matrix);
 
                     // Prompt
-                    Console.Write("Start calculation(y)? or Enter another matrix(n) : ");
+                    Console.Write("Start calculation(enter c) or Enter another matrix(any other key) : ");
                     var ans = Console.ReadLine();
 
-                    if (ans == "y")
+                    if (ans == "c")
                     {
+                        Console.WriteLine();
                         break;
                     }
+                    Console.WriteLine();
                 }
 
                 // Load image.
@@ -161,9 +171,9 @@ namespace MatrixTransform
                         {
                             imagePixels.Add(new double[3, 1]
                             {
-                            { x },
-                            { y },
-                            { 1 }
+                                { x },
+                                { y },
+                                { 1 }
                             });
                         }
 
