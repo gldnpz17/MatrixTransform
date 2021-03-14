@@ -9,25 +9,68 @@ namespace MatrixTransform
     {
         static async Task Main(string[] args)
         {
+            // Write identity and instructions
+            Console.WriteLine("Tugas Program Transformasi Matrix 2D");
+            Console.WriteLine("Nama : Firdaus Bisma Suryakusuma");
+            Console.WriteLine("NIM  : 19/444051/TK/49247");
+            Console.WriteLine("1. Mohon pastikan terdapat file bernama \'input.png\' di dalam direktori yang sama dengan program. File output akan bernama \'output.png\'.");
+            Console.WriteLine("2. Program hanya akan membaca pixel dengan warna hitam sehingga mohon pastikan R=0, G=0, dan B=0.");
+            Console.WriteLine("3. Di dalam \'output.png\', hasil transformasi berwarna merah dan ditindih di atas gambar aslinya.");
+            Console.WriteLine();
+
             // Input transformation matrix
             var transformationMatrices = new List<double[,]>();
-
             while (true)
             {
-                Console.WriteLine("Input transformation matrix (3x3) :");
-                var matrix = new double[3, 3];
-                for (int row = 0; row < 3; row++)
+                Console.WriteLine("Select a transformation :");
+                Console.WriteLine("1. Translation");
+                Console.WriteLine("2. Rotation");
+                Console.WriteLine("3. Scaling");
+                Console.WriteLine("4. Shearing");
+                Console.WriteLine("5. Input custom matrix");
+                Console.Write("Choice : ");
+                var choice = Console.ReadLine();
+
+                switch (choice)
                 {
-                    var rowElements = Console.ReadLine().Split(' ');
-                    for(int col = 0; col < 3; col++)
-                    {
-                        matrix[row, col] = Convert.ToDouble(rowElements[col]); 
-                    }
+                    case "1":
+                        Console.Write("Translation direction (x/y) : ");
+                        var direction = Console.Read();
+                        Console.Write("Translation distance : ");
+                        var distance = Console.Read();
+                        break;
+
+                    case "2":
+                        break;
+
+                    case "3":
+                        break;
+
+                    case "4":
+                        break;
+                        
+                    case "5":
+                        Console.WriteLine("Input transformation matrix (3x3) :");
+                        var matrix = new double[3, 3];
+                        for (int row = 0; row < 3; row++)
+                        {
+                            var rowElements = Console.ReadLine().Split(' ');
+                            for (int col = 0; col < 3; col++)
+                            {
+                                matrix[row, col] = Convert.ToDouble(rowElements[col]);
+                            }
+                        }
+                        transformationMatrices.Add(matrix);
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid choice.");
+                        Console.WriteLine();
+                        continue;
                 }
-                transformationMatrices.Add(matrix);
 
                 // Prompt
-                Console.Write("Start calculation(Y)? or Enter another matrix(N) : ");
+                Console.Write("Start calculation(y)? or Enter another matrix(n) : ");
                 var ans = Console.ReadLine();
 
                 if (ans == "Y")
